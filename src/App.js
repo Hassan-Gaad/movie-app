@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import axiosInstance from './environment/AxiosConfig';
+import { BrowserRouter as Router,Route, Switch} from 'react-router-dom';
+import MovieList from './components/MovieList';
+import MovieDetails from './components/MovieDetails';
 
 function App() {
+  const [searchTxt, setSearchTxt] = useState();
+  const [goHome, setGoHome] = useState(1);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+      <Navbar onSearch={setSearchTxt} goHome={(val)=>{setGoHome(val)}}/>
+      <div>
+      <Switch>
+        <Route path='/' exact>
+          <MovieList searchValue={searchTxt} goHome={goHome}/>
+        </Route>
+        <Route path="/MovieDetails/:id" exact>
+          <MovieDetails/>
+        </Route>
+      </Switch> 
+      </div>
+      </Router>
   );
 }
 
