@@ -9,6 +9,9 @@ const MovieList = ({searchValue , goHome}) => {
     const [pageNo, setPageNo] = useState(2);
 
     console.log(goHome);
+    useEffect(() => {
+        setPageNo(1);
+    }, [goHome])
     
     useEffect(() => {
         axiosInstance
