@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import axiosInstance from '../environment/AxiosConfig';
 import MovieCard from './MovieCard'
 import Pagination from './Pagination';
@@ -7,8 +8,8 @@ const MovieList = ({searchValue , goHome}) => {
 
     const [movies, setMovies] = useState([{}]);
     const [pageNo, setPageNo] = useState(2);
-
-    console.log(goHome);
+    
+    
     useEffect(() => {
         setPageNo(1);
     }, [goHome])
@@ -48,7 +49,7 @@ const MovieList = ({searchValue , goHome}) => {
         <>
             <div className="row g-3">
                 {movies.results?.map((movie) => {
-                    return <MovieCard key={movie.id} movie={movie} />
+                    return <MovieCard key={movie.id} movie={movie}/>
                 })}
                 <Pagination pageNoPluse={()=>{setPageNo(pageNo + 1)}} pageNo={(no)=>{setPageNo(no)}} pageNoMin={()=>{pageNo-1<1?setPageNo(1): setPageNo(pageNo-1)}} />
             </div>

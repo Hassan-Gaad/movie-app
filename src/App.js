@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router,Route, Switch} from 'react-router-dom';
 import MovieList from './components/MovieList';
 import MovieDetails from './components/MovieDetails';
+import './App.css';
+import Favorite from './pages/Favorite';
 
 function App() {
   const [searchTxt, setSearchTxt] = useState();
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/MovieDetails/:id" exact>
           <MovieDetails/>
+        </Route>
+        <Route path="/favorites" exact>
+          <Favorite/>
         </Route>
       </Switch> 
       </div>

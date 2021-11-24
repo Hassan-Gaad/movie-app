@@ -1,7 +1,7 @@
 .card {
 
   color: white !important;
-  background-color:#2F4550 !important;
+  background-color: #2F4550 !important;
   padding: 1px !important;
 
   /* --dark-text: #292929;
@@ -11,6 +11,24 @@
   --accent: #B8DBD9;
   --button-border: #B8DBD9; */
 }
-.row{
-  background-color:#2F4550 !important;
+
+.row {
+  background-color: #2F4550 !important;
+}
+
+.img-container {
+  position: relative;
+}
+
+.card-img-top {
+  display: block;
+}
+
+.bi-heart {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 40px;
+  height: 30px;
+  color: tomato;
 }
