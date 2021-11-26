@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BsFillHeartFill } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import logo from '../assets/movieIcon.png'
+import { LanguageContext, languageContext } from '../context/LangContext';
 const Navbar = ({ onSearch, goHome }) => {
     const [text, setText] = useState('');
+    const {lang,setLang} = useContext(LanguageContext);
 
     const onSearchClicked = (e, txt) => {
         // e.preventDefault();
@@ -30,6 +32,10 @@ const Navbar = ({ onSearch, goHome }) => {
                             </li>
                             <li className="nav-item">
                                 <Link to="/favorites" className="nav-link" >Favorites</Link>
+                            </li>
+                            <li className="nav-item text-light" onClick={()=>{setLang(lang=== 'ar' ? "en" : "ar")}}>
+                                <h6 className="nav-link btn">{lang}</h6>
+                               
                             </li>
                             <li className="nav-item">
                             <Link to="/favorites" className="nav-link" >

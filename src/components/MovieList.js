@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axiosInstance from '../environment/AxiosConfig';
+import { getMovies } from '../store/actions/Movies';
 import MovieCard from './MovieCard'
 import Pagination from './Pagination';
 
 const MovieList = ({searchValue , goHome}) => {
 
-    const [movies, setMovies] = useState([{}]);
+    // const [movies, setMovies] = useState([{}]);
+    const movies = useSelector(state => state.movies)
+    const dispatch = useDispatch();
     const [pageNo, setPageNo] = useState(2);
     
     
@@ -15,34 +18,14 @@ const MovieList = ({searchValue , goHome}) => {
     }, [goHome])
     
     useEffect(() => {
-        axiosInstance
-            .get("movie/popular", {
-                params: {
-                    page: pageNo,
-                }
-            })
-            .then((res) => {
-                setMovies(res.data)
-                console.log(res.data);
-            })
-            .catch((err) => console.log(err));
-
+        dispatch(getMovies({pageNo,url:"movie/popular"}));
     }, [pageNo,goHome]);
     
     useEffect(() => {
         console.log(searchValue);
-           axiosInstance
-               .get("search/movie", {
-                   params: {
-                       query: searchValue,
-                   }
-               })
-               .then((res) => {
-                    setMovies(res.data)
-                   console.log(res.data);
-               })
-               .catch((err) => console.log(err));
-   
+
+        dispatch(getMovies({searchValue,url:"search/movie"}));
+           
        }, [searchValue])
    
     return (
