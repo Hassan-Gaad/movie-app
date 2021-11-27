@@ -56,7 +56,7 @@ const MovieCard = (movie) => {
                 <Link to={`/MovieDetails/${movie.movie.id}`}>
                     <h5 className="card-title">{movie.movie.title}</h5>
                 </Link>
-                <p className="card-text">{movie.movie.overview}</p>
+                <p className="card-text text-truncate text-wrap" style={{height:'100px'}}>{movie.movie.overview}</p>
             </div>
         </div>
 
